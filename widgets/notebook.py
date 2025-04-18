@@ -1,10 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from pathlib import Path
-from PIL import ImageTk, Image
 
-# Localização das imagens
-IMG_PATH = Path(__file__).parent.parent / 'images'
 
 class NotebookRequest():
     def __init__(self, parent, main_app):
@@ -39,10 +35,13 @@ class NotebookRequest():
         """
         # Obtém o identificador da aba (tab_id)
         tab_id = self.note.tabs()[tab_index]
+
         # Remove a aba do Notebook
         self.note.forget(tab_index)
+
         for tree_item_id, mapped_tab_id in list(self.main_app.tab_mapping.items()):
             if mapped_tab_id == tab_id:
                 del self.main_app.tab_mapping[tree_item_id]
+                self.main_app.lista_de_request.get_lista_de_request().delete(tree_item_id)
                 break
 

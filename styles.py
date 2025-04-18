@@ -20,11 +20,15 @@ def ConfigStyles():
     warning_disabled_color = "#ffeeba"  # Amarelo Claro
 
 
+    s.configure("Teste.TFrame", background="red")
     s.configure("TFrame", background= '#2e2e2e')
     s.configure("TLabel", background="#2e2e2e", foreground="#ffffff")
     s.configure("TPanedwindow", background="#2e2e2e", foreground="#ffffff" )
     s.configure("TNotebook", background="#2e2e2e")
-    
+    s.configure("TEntry", background="#3C3C3C", foreground="white", font=("Arial", 12))
+    s.configure("TMenubutton", background="#3C3C3C", foreground="white", borderwidth=1)
+    s.map("TMenubutton", background=[("active", "#5C5C5C")])
+
     s.configure("Primary.TButton",
                 foreground="#ffffff",
                 background=primary_color,

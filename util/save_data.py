@@ -7,12 +7,26 @@ FILE_PATH = Path(__file__).parent.parent
 
 def save_config_data(tree_data, file_path=f"{FILE_PATH}/config_data.json"):
     """Salva os dados do Treeview em um arquivo JSON."""
-    try:
+    try:        
         with open(file_path, "w", encoding="utf-8") as file:
             json.dump(tree_data, file, indent=4, ensure_ascii=False)
         print(f"Dados salvos com sucesso em {file_path}")
     except Exception as e:
         print(f"Erro ao salvar os dados: {e}")
+
+
+def save_data(all_tabs_data, file_path=f"{FILE_PATH}/config.json"):
+    
+    with open(file_path, "w", encoding="utf-8") as file:
+        json.dump(all_tabs_data, file, indent=4, ensure_ascii=False)
+
+def load_data(file_path=f"{FILE_PATH}/config.json"):
+    try:
+        with open(file_path, "r", encoding="utf-8") as file:
+            return json.load(file)
+       
+    except FileExistsError:
+        return []
 
 def load_treeview_data(file_path=f"{FILE_PATH}/config_data.json"):
     """Carrega os dados do Treeview de um arquivo JSON."""

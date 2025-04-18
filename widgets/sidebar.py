@@ -5,10 +5,7 @@ from PIL import ImageTk, Image
 
 from idlelib.tooltip import Hovertip
 from util.save_data import load_treeview_data_by_id
-
-
-# Localização das imagens
-IMG_PATH = Path(__file__).parent.parent / 'images'
+from util.functions import load_image
 
 notebook = None
 
@@ -16,12 +13,16 @@ notebook = None
 class Sidebar():
     def __init__(self, parent, main_app):
         
+        self.popup_menu = None   
         self.parent = parent
         self.main_app = main_app
 
-        self.plus_img = tk.PhotoImage(file=IMG_PATH/'172525_plus_icon.png', height=24, width=24)
-        self.pointer_icon = ImageTk.PhotoImage(Image.open(IMG_PATH/'6637787_direction_menu_point_pointer_icon.png').resize((16, 16)))
+        # self.plus_img = tk.PhotoImage(file=IMG_PATH/'172525_plus_icon.png', height=24, width=24)
+        # self.pointer_icon = ImageTk.PhotoImage(Image.open(IMG_PATH/'6637787_direction_menu_point_pointer_icon.png').resize((16, 16)))
         
+        self.plus_img = load_image('172525_plus_icon.png', size=(24, 24))
+        self.pointer_icon = load_image('6637787_direction_menu_point_pointer_icon.png', size=(16, 16))
+
         # Inicio os componentes
         self.init_components()
 
@@ -106,8 +107,9 @@ class Sidebar():
         """
         Adiciona um novo item ao Treeview e cria uma aba correspondente no Notebook.
         """
-        tree_item_id = self._lista_de_request.insert("", "end", text="Http Request", image=self.pointer_icon)
-        tab_id = self.main_app.update_notebook(text="Http Request", tree_item_id=tree_item_id)
+        default_method = "GET"
+        tree_item_id = self._lista_de_request.insert("", "end", text="Http Request", image=self.pointer_icon, values=(default_method))
+        tab_id = self.main_app.update_notebook(method=default_method, text="Http Request", tree_item_id=tree_item_id)
         self.main_app.tab_mapping[tree_item_id] = tab_id
         self.main_app.save_data_config()
 
@@ -180,6 +182,7 @@ class Sidebar():
             self.main_app.save_data_config()
             
     
- 
+    def get_lista_de_request(self):
+        return self._lista_de_request
 
     

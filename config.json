@@ -1,0 +1,20 @@
+[
+    {
+        "id": "I001",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": {
+            "title": "foo",
+            "body": "bar",
+            "userId": 1
+        }
+    },
+    {
+        "id": "I002",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": {}
+    }
+]

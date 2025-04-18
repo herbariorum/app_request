@@ -1,17 +1,12 @@
 [
     {
         "id": "I001",
-        "text": "retornaTodos",
-        "method": "GET"
+        "text": "Http Request",
+        "method": "POST"
     },
     {
         "id": "I002",
-        "text": "Http Request",
-        "method": "GET"
-    },
-    {
-        "id": "I003",
-        "text": "Post Http Request",
+        "text": "getTodosNomes",
         "method": "GET"
     }
 ]
